@@ -16,6 +16,9 @@
 	 * kingmailer-wordpress-plugin - Sending mail from Wordpress using Kingmailer
 	 * Copyright (C) 2020 Krishna Moniz
 	 * Copyright (C) 2016 Mailgun, et al.
+	 * 
+	 * This is a test version of the software. The plugin includes code that is 
+	 * commented out, because it doesn't work yet or still needs to be deleted.
 	 *
 	 * This program is free software; you can redistribute it and/or modify
 	 * it under the terms of the GNU General Public License as published by
