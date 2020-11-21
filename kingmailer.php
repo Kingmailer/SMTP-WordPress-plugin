@@ -1,0 +1,358 @@
+<?php
+
+	/**
+	 * Plugin Name:  Kingmailer
+	 * Plugin URI:   https://kingmailer.co
+	 * Description:  Transactional Email relay for WooCommerce stores, forums, registration and password reset emails. Made in Suriname.
+	 * Version:      0.2
+	 * Author:       Krishna Moniz
+	 * Author URI:   http://www.krishna.sr/
+	 * License:      GPLv2
+	 * Text Domain:  kingmailer
+	 * Domain Path:  /languages/.
+	 */
+
+	/*
+	 * kingmailer-wordpress-plugin - Sending mail from Wordpress using Kingmailer
+	 * Copyright (C) 2020 Krishna Moniz
+	 * Copyright (C) 2016 Mailgun, et al.
+	 *
+	 * This program is free software; you can redistribute it and/or modify
+	 * it under the terms of the GNU General Public License as published by
+	 * the Free Software Foundation; either version 2 of the License, or
+	 * (at your option) any later version.
+	 *
+	 * This program is distributed in the hope that it will be useful,
+	 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 * GNU General Public License for more details.
+	 *
+	 * You should have received a copy of the GNU General Public License along
+	 * with this program; if not, write to the Free Software Foundation, Inc.,
+	 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+	 */
+
+	/**
+	 * Entrypoint for the Kingmailer plugin. Sets up the mailing "strategy" -
+	 * either API or SMTP.
+	 *
+	 * Registers handlers for later actions and sets up config variables with
+	 * Wordpress.
+	 */
+	class Kingmailer
+	{
+		/**
+		 * Setup shared functionality for Admin and Front End.
+		 *
+		 * @since    0.1
+		 */
+		public function __construct()
+		{
+			$this->options = get_option('kingmailer');
+			$this->plugin_file = __FILE__;
+			$this->plugin_basename = plugin_basename($this->plugin_file);
+
+
+			// Redefine PHPMailer.
+			add_action( 'plugins_loaded', [ $this, 'replace_phpmailer' ] );
+			add_action( 'phpmailer_init', [ $this, 'phpmailer_init' ]  );
+
+
+			// // Either override the wp_mail function or configure PHPMailer to use the
+			// // Kingmailer SMTP servers
+			// // For SMTP, we need to inject a `wp_mail` filter to make "from" settings work properly. 
+			// if ($this->get_option('use_api') || (defined('KINGMAILER_USEAPI') && KINGMAILER_USEAPI)):
+			// 	if (!function_exists('wp_mail')):
+			// 		if (!include dirname(__FILE__) . '/includes/wp-mail-api.php'):
+			// 			self::deactivate_and_die(dirname(__FILE__) . '/includes/wp-mail-api.php');
+			// 		endif;
+			// 	endif;
+			// else:
+			// 	// Using SMTP, include the SMTP filter
+			// 	if (!function_exists('km_smtp_mail_filter')):
+			// 		if (!include dirname(__FILE__) . '/includes/wp-mail-smtp.php'):
+			// 			self::deactivate_and_die(dirname(__FILE__) . '/includes/wp-mail-smtp.php');
+			// 		endif;
+			// 	endif;
+			// 	add_filter('wp_mail', 'km_smtp_mail_filter');
+			// 	add_action('phpmailer_init', array(&$this, 'phpmailer_init'));
+			// 	add_action('wp_mail_failed', 'wp_mail_failed');
+			// endif;
+		}
+
+		/**
+		 * Init the \PHPMailer replacement.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return MailCatcherInterface
+		 */
+		public function replace_phpmailer() {
+
+			global $phpmailer;
+
+			return $this->replace_w_fake_phpmailer( $phpmailer );
+		}
+
+		/**
+		 * Overwrite default PhpMailer with our MailCatcher.
+		 *
+		 * @since 1.0.0
+		 * @since 1.5.0 Throw external PhpMailer exceptions, inherits default WP behavior.
+		 *
+		 * @param null $obj PhpMailer object to override with own implementation.
+		 *
+		 * @return MailCatcherInterface
+		 */
+		protected function replace_w_fake_phpmailer( &$obj = null ) {
+
+			$obj = $this->generate_mail_catcher( true );
+
+			return $obj;
+		}
+
+		/**
+		 * Generate the correct MailCatcher object based on the PHPMailer version used in WP.
+		 *
+		 * Also conditionally require the needed class files.
+		 *
+		 * @see   https://make.wordpress.org/core/2020/07/01/external-library-updates-in-wordpress-5-5-call-for-testing/
+		 *
+		 * @since 2.2.0
+		 *
+		 * @param bool $exceptions True if external exceptions should be thrown.
+		 *
+		 * @return MailCatcherInterface
+		 */
+		public function generate_mail_catcher( $exceptions = null ) {
+
+			$mail_catcher = null;
+			if ( version_compare( get_bloginfo( 'version' ), '5.5-alpha', '<' ) ) {
+				if ( ! class_exists( '\PHPMailer', false ) ) {
+					require_once ABSPATH . WPINC . '/class-phpmailer.php';
+				}
+
+				if ( ! class_exists( '\Kingmailer\MailCatcher', false ) ) {
+					require_once dirname(__FILE__) . '/includes/MailCatcher.php';
+				}
+
+				$mail_catcher = new  \Kingmailer\MailCatcher( $exceptions );
+			} else {
+				if ( ! class_exists( '\PHPMailer\PHPMailer\PHPMailer', false ) ) {
+					require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
+				}
+
+				if ( ! class_exists( '\PHPMailer\PHPMailer\Exception', false ) ) {
+					require_once ABSPATH . WPINC . '/PHPMailer/Exception.php';
+				}
+
+				if ( ! class_exists( '\PHPMailer\PHPMailer\SMTP', false ) ) {
+					require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
+				}
+
+				if ( ! class_exists( '\Kingmailer\MailCatcherV6', false ) ) {
+					require_once dirname(__FILE__) . '/includes/MailCatcherV6.php';
+				}
+
+				$mail_catcher = new \Kingmailer\MailCatcherV6( $exceptions );
+			}
+
+			return $mail_catcher;
+		}
+				
+		/**
+		 * Get specific option from the options table.
+		 *
+		 * @param    string $option  Name of option to be used as array key for retrieving the specific value
+		 * @param    array  $options Array to iterate over for specific values
+		 * @param    bool   $default False if no options are set
+		 *
+		 * @return    mixed
+		 *
+		 * @since    0.1
+		 */
+		public function get_option($option, $options = null, $default = false)
+		{
+			if (is_null($options)):
+				$options = &$this->options;
+			endif;
+			if (isset($options[ $option ])):
+				return $options[ $option ];
+			else:
+				return $default;
+			endif;
+		}
+
+		/**
+		 * Hook into phpmailer to override SMTP based configurations
+		 * to use the Kingmailer SMTP server.
+		 *
+		 * @param    object $phpmailer The PHPMailer object to modify by reference
+		 *
+		 * @return    void
+		 *
+		 * @since    0.1
+		 */
+		public function phpmailer_init($phpmailer)
+		{
+			km_error_log('made it to phpmailer init',"__construct");
+			$options = get_option('kingmailer');
+
+			$from = $options['from-address'];
+			$fromName = $options['from-name'];
+
+			// Set the sender name and e-mail
+			if(!empty($from) && (bool) $options['override-from']){
+				$phpmailer->SetFrom($from, $fromName);
+			}
+
+			$host = (defined('KINGMAILER_HOST') && KINGMAILER_HOST) ? KINGMAILER_HOST : $options['host'];
+			$secure = (defined('KINGMAILER_SECURE') && KINGMAILER_SECURE) ? KINGMAILER_SECURE : $options['secure'];
+			$sectype = (defined('KINGMAILER_SECTYPE') && KINGMAILER_SECTYPE) ? KINGMAILER_SECTYPE : $options['sectype'];
+			$username = preg_replace('/@.+$/', '', $username) . "@{$domain}";	// TODO Krishna wat doet username?
+			$password = (defined('KINGMAILER_PASSWORD') && KINGMAILER_PASSWORD) ? KINGMAILER_PASSWORD : $options['password'];
+
+			if( ! $options['use_api'])
+			{
+				$phpmailer->isSMTP();     
+				$phpmailer->Host = (bool) $host ? $host : 'kingmailer.org';
+				$phpmailer->SMTPSecure = (bool) $secure ? $sectype : '';
+
+				if ( ! (bool) $secure)
+				{
+					$phpmailer->Port = 25;
+				} else 
+				{
+					if ('ssl' === $sectype):
+						// For SSL-only connections, use 465
+						$phpmailer->Port = 465;
+					else:
+						// Otherwise, use 587.
+						$phpmailer->Port = 587;
+					endif;
+					$phpmailer->SMTPAuth = true; // Ask it to use authenticate using the Username and Password properties
+					$phpmailer->Username = $username;
+					$phpmailer->Password = $password;
+		
+				}
+			}
+		}
+
+		/**
+		 * Deactivate this plugin and die.
+		 * Deactivate the plugin when files critical to it's operation cannot be loaded
+		 *
+		 * @param    $file    Files critical to plugin functionality
+		 *
+		 * @return    void
+		 *
+		 * @since    0.1
+		 */
+		public function deactivate_and_die($file)
+		{
+			load_plugin_textdomain('kingmailer', false, 'kingmailer/languages');
+			$message = sprintf(__('Kingmailer has been automatically deactivated because the file <strong>%s</strong> is missing. Please reinstall the plugin and reactivate.'),
+				$file);
+			if (!function_exists('deactivate_plugins')):
+				include ABSPATH . 'wp-admin/includes/plugin.php';
+			endif;
+			deactivate_plugins(__FILE__);
+			wp_die($message);
+		}
+
+		/**
+		 * Make a Kingmailer api call.
+		 *
+		 * @param    string $uri    The endpoint for the Kingmailer API
+		 * @param    array  $params Array of parameters passed to the API
+		 * @param    string $method The form request type
+		 *
+		 * @return    array
+		 *
+		 * @since    0.1
+		 */
+		public function api_call($uri, $params = array(), $method = 'POST')
+		{
+			$options = get_option('kingmailer');
+			$api_key = (defined('KINGMAILER_APIKEY') && KINGMAILER_APIKEY) ? KINGMAILER_APIKEY : $options[ 'api_key' ];
+			$domain = (defined('KINGMAILER_DOMAIN') && KINGMAILER_DOMAIN) ? KINGMAILER_DOMAIN : $options[ 'domain' ];
+
+			$this->api_endpoint = 'https://kingmailer.org/api/v1/send/message';
+
+			$time = time();
+			$url = $this->api_endpoint . $uri;
+			$headers = array(
+				'X-Server-API-Key' => $api_key
+			);
+
+			switch ($method) {
+				case 'GET':
+					$params[ 'sess' ] = '';
+					$querystring = http_build_query($params);
+					$url = $url . '?' . $querystring;
+					$params = '';
+					break;
+				case 'POST':
+				case 'PUT':
+				case 'DELETE':
+					$params[ 'sess' ] = '';
+					$params[ 'time' ] = $time;
+					$params[ 'hash' ] = sha1(date('U'));
+					break;
+			}
+
+			// make the request
+			$args = array(
+				'method' => $method,
+				'body' => $params,
+				'headers' => $headers,
+				'sslverify' => true,
+			);
+
+			// make the remote request
+			$result = wp_remote_request($url, $args);
+			if (!is_wp_error($result)) {
+				return $result[ 'body' ];
+			} 
+
+			km_error_log($result->get_error_message(), "api_call");
+
+			return $result->get_error_message();
+		}
+
+	}
+
+/**
+ * 
+ * Temporary function to for error checking
+ */
+function km_error_log($string, $source = "Unknown source")
+{
+	$object_output = "";
+
+	if(is_object($string) || is_array($string)) {
+		foreach($string as $key => $value) {
+			$object_output .= "[" . $key . "] => " . $value . " | ";
+		}
+		error_log( "\n" . $source . ": " . $object_output , 3, "/var/www/html/wp-content/plugins/kingmailer/php_errors.log");
+	} else {
+		error_log( "\n" . $source . ": " . $string, 3, "/var/www/html/wp-content/plugins/kingmailer/php_errors.log");
+	}
+
+}
+
+
+if ( ! defined( 'KM_PLUGIN_VER' ) ) {
+	define( 'KM_PLUGIN_VER', '0.2' );
+}
+
+$kingmailer = new Kingmailer();
+
+
+if (is_admin()){
+	if (@include dirname(__FILE__) . '/includes/admin.php'){
+		$kingmailerAdmin = new KingmailerAdmin();
+	} else {
+		Kingmailer::deactivate_and_die(dirname(__FILE__) . '/includes/admin.php');
+	}
+}
