@@ -14,7 +14,7 @@ Easily send email from your WordPress site through Kingmailer using the HTTP API
 
 == Description ==
 
-[Kingmailer](http://www.kingmailer.co/) is an easy to use email service build for anyone, not just developers. Give Kingmailer a try.
+[Kingmailer](https://kingmailer.co/) is an SMTP server build for sending, receiving en routing emails.
 
 This plugin provides you with a way to send email when the server you are on does not support SMTP or where outbound SMTP is restricted by using the Kingmailer HTTP API for sending email. 
 
