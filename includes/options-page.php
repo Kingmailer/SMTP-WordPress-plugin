@@ -23,11 +23,7 @@
 ?>
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br/></div>
-<!--	<span class="alignright">
-				<a target="_blank" href="https://kingmailer.org/login">
-					<img src="https://assets.mailgun.com/img/mailgun.svg" alt="Kingmailer" style="width:10em;"/>
-				</a>
-			</span>-->
+
 	<h2><?php _e('Kingmailer', 'kingmailer'); ?></h2>
 
 	<p>
@@ -54,7 +50,7 @@
 		<table class="form-table">
 		<tr valign="top">
 				<th scope="row">
-					<?php _e('Website Domain', 'kingmailer'); ?>
+					<?php _e('Your Domain', 'kingmailer'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -91,7 +87,7 @@
 					/>
 					<p class="description">
 						<?php
-							_e('The "User Name" part of the sender information (<code>"Excited User &lt;info@example.com&gt;"</code>).', 'kingmailer');
+							_e('The "User Name" part of the sender information. This can be your domain name.', 'kingmailer');
 						?>
 					</p>
 				</td>
@@ -109,7 +105,7 @@
 					/>
 					<p class="description">
 						<?php
-							_e('The &lt;info@example.com&gt; part of the sender information (<code>"Excited User &lt;info@example.com&gt;"</code>). This address will appear as the `From` address on sent mail. <strong>It is recommended that the @mydomain portion matches your Kingmailer sending domain.</strong>', 'kingmailer');
+							_e('The &lt;info@example.com&gt; part of the sender information. This address will appear as the `From` address on sent mail. <strong>It is recommended that the @mydomain portion matches your Kingmailer sending domain.</strong>', 'kingmailer');
 						?>
 					</p>
 				</td>
@@ -159,8 +155,6 @@
 					/>
 					<p class="description">
 						<?php _e('Your Kingmailer API-host. Fixed at "kingmailer.org"', 'kingmailer'); ?>
-						<br />
-						<?php _e('Only valid for use with HTTP API.', 'kingmailer'); ?>
 					</p>
 				</td>
 			</tr>
@@ -174,9 +168,7 @@
 						   placeholder="ur7keAGRjYB3W5NfKQEm563Z"
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer API key. Create an API by visiting credentials in your Kingmailer-account.', 'kingmailer'); ?>
-						<br />
-						<?php _e('Only valid for use with HTTP API.', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer API key. Create an API by visiting the credentials section in your Kingmailer-account.', 'kingmailer'); ?>
 					</p>
 				</td>
 			</tr>
