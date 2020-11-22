@@ -34,61 +34,11 @@ This plugin is based on the Mailgun for WordPress plugin and also WP Mail SMTP .
 
 - Testing the configuration fails when using the HTTP API
 
-Your web server may not allow outbound HTTP connections. Set `Use HTTP API` to "No", and fill out the configuration options to SMTP and test again.
-
-- Testing the configuration fails when using SMTP
-
-Your web server may not allow outbound SMTP connections on port 465 for secure connections or 587 for unsecured connections. Try changing `Use Secure SMTP` to "No" or "Yes" depending on your current configuration and testing again. If both fail, try setting `Use HTTP API` to "Yes" and testing again.
-
-If you *have* to use SMTP and something is still going horribly wrong, enable debug mode in WordPress and also add the `KM_DEBUG_SMTP` constant to your `wp-config.php`, like so:
-
-`
-define( 'KM_DEBUG_SMTP', true );
-`
+Your web server may not allow outbound HTTP connections. Set `Use HTTP API` to "No", and fill out the configuration options to SMTP and test again. A different possibility may be: your server IP is blocked by Spamhaus or other services that regulates spam. Please check if your IP is not blacklisted. 
 
 - Can this be configured globally for WordPress Multisite?
 
-Yes, using the following constants that can be placed in wp-config.php:
-
-`
-KINGMAILER_HOST       Type: string
-     ex. define('KINGMAILER_HOST', 'kingmailer.org');
-KINGMAILER_USEAPI       Type: boolean  Choices: '0' or '1' (0 = false/no)
-KINGMAILER_APIKEY       Type: string
-KINGMAILER_DOMAIN       Type: string
-KINGMAILER_USERNAME     Type: string
-KINGMAILER_PASSWORD     Type: string
-KINGMAILER_SECURE       Type: boolean  Choices: '0' or '1' (0 = false/no)
-KINGMAILER_SECTYPE      Type: string   Choices: 'ssl' or 'tls'
-KINGMAILER_FROM_NAME    Type: string
-KINGMAILER_FROM_ADDRESS Type: string
-`
-
-- What hooks are available for use with other plugins?
-
-`km_use_recipient_vars_syntax` (TODO krishna remove)
-  Mutates messages to use recipient variables syntax - see
-  https://documentation.mailgun.com/user_manual.html#batch-sending for more info.
-
-  Should accept a list of `To` addresses.
-
-  Should *only* return `true` or `false`.
-
-`km_mutate_message_body`
-  Allows an external plugin to mutate the message body before sending.
-
-  Should accept an array, `$body`.
-
-  Should return a new array to replace `$body`.
-
-`km_mutate_attachments`
-  Allows an external plugin to mutate the attachments on the message before
-  sending.
-
-  Should accept an array, `$attachments`.
-
-  Should return a new array to replace `$attachments`.
-
+This plugin is not yet tested with WordPress Multisite.
 
 - The plain text alternative of my mail looks different from my template.
 
@@ -102,6 +52,8 @@ Plain text alternatives are for mail clients that cannot process HTML. As such, 
 
 == Changelog ==
 
+= 0.2 (2020-11-22): =
+* Updated text
+
 = 0.1 (2020-10-17): =
 * Initial Release
-
