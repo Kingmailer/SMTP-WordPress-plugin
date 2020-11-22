@@ -1,25 +1,26 @@
 <?php
 
 	/**
-	 * Plugin Name:  Kingmailer
-	 * Plugin URI:   https://kingmailer.co
-	 * Description:  Transactional Email relay for WooCommerce stores, forums, registration and password reset emails. Made in Suriname.
+	 * Plugin Name:  Kingmailer SMTP
+	 * Plugin URI:   https://github.com/Kingmailer/WordPress-SMTP
+	 * Description:  SMTP server for WooCommerce stores, forums, registration and password reset emails.
 	 * Version:      0.2
-	 * Author:       Krishna Moniz
-	 * Author URI:   http://www.krishna.sr/
-	 * License:      GPLv2
-	 * Text Domain:  kingmailer
+	 * Requires at least: 3.3
+	 * Author:       Kingmailer
+	 * Author URI:   https://kingmailer.co
+	 * License:      GPLv2 or later
+	 * Text Domain:  wordpress-smtp
 	 * Domain Path:  /languages/.
 	 */
 
 	/*
-	 * kingmailer-wordpress-plugin - Sending mail from Wordpress using Kingmailer
+	 * wordpress-smtp - Sending mail from Wordpress using Kingmailer
 	 * Copyright (C) 2020 Krishna Moniz
 	 * Copyright (C) 2016 Mailgun, et al.
 	 * Copyright (C) 2007 WPForms
 	 * 
 	 * This is a test version of the software. The plugin includes code that is 
-	 * commented out, because it doesn't work yet or still needs to be deleted.
+	 * commented out, because some parts need additional testing and will be roled out in future versions.
 	 *
 	 * This program is free software; you can redistribute it and/or modify
 	 * it under the terms of the GNU General Public License as published by
