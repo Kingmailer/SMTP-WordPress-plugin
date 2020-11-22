@@ -1,30 +1,30 @@
 Kingmailer for WordPress
 =====================
 
-Contributors: Krishna Moniz, Mailgun, sivel, lookahead.io, m35dev
-Tags: kingmailer, smtp, http, api, mail, email
+Contributors: Krishna Moniz, Navin Poeran
+Tags: kingmailer, smtp, http, api, mail, email, routing
 Requires at least: 3.3
 Tested up to: 5.5.1
 Stable tag: 0.2
-License: GPLv2
+License: GPLv2 or later
 
 
-Easily send email from your WordPress site through Kingmailer using the HTTP API or SMTP.
+Easily send email from your WordPress site through Kingmailer using the HTTP API.
 
 
 == Description ==
 
-[Kingmailer](https://kingmailer.co/) is an SMTP server build for sending, receiving en routing emails.
+[Kingmailer](https://kingmailer.co/) is a simple and fully featured mail server / SMTP service build for sending transactional emails. Think Sendgrid and Mailgun but our focus is solely on delivery of transactional emails. Start sending, receiving or routing emails with a few clicks.
+
+Our service is build for people who want a mail server / SMTP service to be simple and easy to use. Every month, thousands of emails are sent, received, routed using our delightful and powerful SMTP service. Try for free.
 
 This plugin provides you with a way to send email when the server you are on does not support SMTP or where outbound SMTP is restricted by using the Kingmailer HTTP API for sending email. 
 
-All you need to use the plugin is a [Kingmailer account](https://kingmailer.co/). No credit card required. Upgrade or cancel anytime. We accept credit card, PayPal and Bitcoin payments.
-
-This plugin is based on the excellent [Mailgun for wordpress](https://wordpress.org/plugins/mailgun/) plugin. 
+This plugin is based on the Mailgun for WordPress plugin and also WP Mail SMTP . 
 
 == Installation ==
 
-1. Upload the `kingmailer` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
+1. Upload the `WordPress-SMTP` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
 2. Activate the plugin through the 'Plugins' menu in WordPress or by using the link provided by the plugin installer
 3. Visit the settings page in the Admin at `Settings -> Kingmailer` and configure the plugin with your account details
 4. Click the Test Configuration button to verify that your settings are correct.
