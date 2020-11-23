@@ -126,12 +126,12 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
     // The API expects a plain text message (Create a plain text that ignores filters)
     $plain_body = strip_tags($message);
 
-    km_error_log("Using custom wp_mail", "wp_mail");
-    km_error_log($to, "wp_mail");
-    km_error_log($headers, "wp_mail");
-    km_error_log($subject, "wp_mail");
-    km_error_log($message, "wp_mail");
-    km_error_log($attachments, "wp_mail");
+
+
+
+
+
+
 
     // Compact the input, apply the filters, and extract them back out
     extract(apply_filters('wp_mail', compact('to', 'subject', 'message', 'headers', 'attachments')));
@@ -262,7 +262,7 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
         $html_body  = $message;
     } else {
         // Treat Unknown Content-Type as html 
-        km_error_log('Unknown Content-Type: ' . $content_type . '.', "wp_mail");
+
         $html_body  = $message;
     }
 
@@ -323,11 +323,11 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
         'data_format' => 'body',
     );
 
-    km_error_log("---- naar API ----", "wp_mail");
-    km_error_log( $url . " will receive: ", "wp_mail");
-    km_error_log( $data, "wp_mail");
-    km_error_log( $data["headers"], "wp_mail");
-    km_error_log("------------------", "wp_mail");
+
+
+
+
+
 
     // TODO: Kingmailer only supports 50 recipients per request, since we are
     // overriding this function, let's add looping here to handle that
@@ -336,7 +336,7 @@ function wp_mail($to, $subject, $message, $headers = '', $attachments = array())
     if (is_wp_error($response)) {
         // Store WP error in last error.
         km_api_last_error($response->get_error_message());
-        km_error_log( $response->get_error_message(), "wp_mail");
+
 
         return false;
     } 

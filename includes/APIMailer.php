@@ -505,14 +505,14 @@ class APIMailer {
 				'body'    => $this->get_body()
 			)
 		);
-		km_error_log("params built", "apimailer send");
-		// km_error_log($this->get_body(), "apimailer send");
-		km_error_log($this->url, "apimailer send");
-		km_error_log($params, "apimailer send");
+
+		//
+
+
 
 
 		$response = wp_safe_remote_post( $this->url, $params );
-		km_error_log("post wp_safe_remote_post", "apimailer send");
+
 
 		$this->process_response( $response );
 	}
@@ -527,26 +527,26 @@ class APIMailer {
 	 */
 	protected function process_response( $response ) {
 
-		km_error_log("pre process_response", "apimailer send");
+
 		if ( is_wp_error( $response ) ) {
-			km_error_log("pre is error", "apimailer send");
+
 			// Save the error text.
 			$errors = $response->get_error_messages();
 			foreach ( $errors as $error ) {
-				km_error_log( $response->get_error_message(), "wp_mail");
+
 			}
 
 			return;
 		}
 
-		km_error_log("pre json_decode response body", "apimailer send");
+
 		if ( isset( $response['body'] ) && APIMailer::is_json( $response['body'] ) ) {
-			km_error_log("show the body", "apimailer send");
-			km_error_log($response['body'], "apimailer send");
+
+
 			$response['body'] = json_decode( $response['body'] );
 		}
 
-		km_error_log("pre set response", "apimailer send");
+
 		$this->response = $response;
 	}
 
@@ -563,20 +563,20 @@ class APIMailer {
 
 		$is_sent = false;
 
-		km_error_log("pre is_email_sent", "apimailer is_email_sent");
+
 		if ( wp_remote_retrieve_response_code( $this->response ) === $this->email_sent_code 
 			&& isset( $this->response['body'] )
 			&& isset( $this->response['body']->status )
 			&& $this->response['body']->status  === "success") {
-			km_error_log("pre set issent to true", "apimailer is_email_sent");
+
 
 			$is_sent = true;
 		} else {
 			// $error = $this->get_response_error();
-			km_error_log( 'e-mail not sent', "apimailer is_email_sent");
+
 		}
 
-		km_error_log("post wp_remote_retrieve_response_code", "apimailer send");
+
 		return $is_sent;
 	}
 

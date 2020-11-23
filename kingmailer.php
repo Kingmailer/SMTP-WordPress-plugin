@@ -200,7 +200,7 @@
 		 */
 		public function phpmailer_init($phpmailer)
 		{
-			km_error_log('made it to phpmailer init',"__construct");
+
 			$options = get_option('kingmailer');
 
 			$from = $options['from-address'];
@@ -320,31 +320,12 @@
 				return $result[ 'body' ];
 			} 
 
-			km_error_log($result->get_error_message(), "api_call");
+
 
 			return $result->get_error_message();
 		}
 
 	}
-
-/**
- * 
- * Temporary function to for error checking
- */
-function km_error_log($string, $source = "Unknown source")
-{
-	$object_output = "";
-
-	if(is_object($string) || is_array($string)) {
-		foreach($string as $key => $value) {
-			$object_output .= "[" . $key . "] => " . $value . " | ";
-		}
-		error_log( "\n" . $source . ": " . $object_output , 3, "/var/www/html/wp-content/plugins/kingmailer/php_errors.log");
-	} else {
-		error_log( "\n" . $source . ": " . $string, 3, "/var/www/html/wp-content/plugins/kingmailer/php_errors.log");
-	}
-
-}
 
 
 if ( ! defined( 'KM_PLUGIN_VER' ) ) {

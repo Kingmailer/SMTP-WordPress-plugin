@@ -67,7 +67,7 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 	 */
 	public function send() { // phpcs:ignore
 
-		km_error_log("Using custom phpmailer", "send");
+
 	
 		// Get the plugin options. These specify the mailer type
 		$options = get_option('kingmailer',  
@@ -85,7 +85,7 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 		// Use the default PHPMailer if the user specified SMTP
 		if ($mail_method === 'mail' || $mail_method === 'smtp') {
 			try {
-				km_error_log("Using custom mailmethod {$mail_method}", "send");
+
 
 				// Allow to hook early to catch any early failed emails.
 				do_action( 'kingmailer_smtp_pre_send_before', $this );
@@ -116,8 +116,8 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 		// We need this so that the \PHPMailer class will correctly prepare all the headers.
 		$this->Mailer = 'mail';  // phpcs:ignore
 
-		km_error_log("Pre presend", "send");
-		km_error_log($options, "send");
+
+
 
 		// Prepare everything (including the message) for sending.
 		if ( ! $this->preSend() ) {
@@ -136,17 +136,17 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 		 */
 		$api_mailer->send();
 
-		km_error_log("APImailer post send", "send");
+
 
 		$is_sent = $api_mailer->is_email_sent();
 
-		km_error_log("APImailer is sent", "send");
+
 
 		// Allow to perform any actions with the data.
 		do_action( 'kingmailer_smtp_send_after', $api_mailer, $this );
 
-		km_error_log("post do action", "send");
-		km_error_log("post do action {$is_sent}", "send");
+
+
 
 		return $is_sent;
 

@@ -61,9 +61,7 @@ function km_smtp_last_error($error = null)
  */
 function km_smtp_debug_output($str, $level)
 {
-    if (defined('KM_DEBUG_SMTP') && KM_DEBUG_SMTP) {
-        error_log("PHPMailer [$level] $str");
-    }
+    // Do nothing
 }
 
 /**

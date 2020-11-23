@@ -67,7 +67,7 @@ class MailCatcher extends \PHPMailer implements MailCatcherInterface {
 	 */
 	public function send() {
 
-		km_error_log("Using oude custom phpmailer", "send");
+
 
 
 		// Get the plugin options. These specify the mailer type

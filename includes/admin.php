@@ -100,7 +100,7 @@
 		public function admin_menu()
 		{
 			if (current_user_can('manage_options')):
-				km_error_log("manage options","admin_js");
+
 				$this->hook_suffix = add_options_page(__('Kingmailer', 'kingmailer'), __('Kingmailer', 'kingmailer'),
 					'manage_options', 'kingmailer', array(&$this, 'options_page'));
 				add_action("admin_print_scripts-{$this->hook_suffix}", array(&$this, 'admin_js'));
@@ -321,8 +321,8 @@
 				array('Content-Type: text/plain')
 			);
 
-			km_error_log('mail sent',"ajax_send_test");
-			km_error_log($result,"ajax_send_test");
+
+
 
 			
 
