@@ -80,7 +80,7 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 
 		// TODO: test if adding an XMailer will improve the chances of something not being labelled spam
 		// Define a custom header, that will be used to identify the plugin and the mailer.
-		// $this->XMailer = 'Kingmailer ' . KM_PLUGIN_VER;
+		// $this->XMailer = 'Kingmailer ' . KINGMAILERCO_SMTP_PLUGIN_VER;
 
 		// Use the default PHPMailer if the user specified SMTP
 		if ($mail_method === 'mail' || $mail_method === 'smtp') {

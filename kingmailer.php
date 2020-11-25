@@ -62,27 +62,6 @@
 			add_action( 'plugins_loaded', [ $this, 'replace_phpmailer' ] );
 			add_action( 'phpmailer_init', [ $this, 'phpmailer_init' ]  );
 
-
-			// // Either override the wp_mail function or configure PHPMailer to use the
-			// // Kingmailer SMTP servers
-			// // For SMTP, we need to inject a `wp_mail` filter to make "from" settings work properly. 
-			// if ($this->get_option('use_api') || (defined('KINGMAILER_USEAPI') && KINGMAILER_USEAPI)):
-			// 	if (!function_exists('wp_mail')):
-			// 		if (!include dirname(__FILE__) . '/includes/wp-mail-api.php'):
-			// 			self::deactivate_and_die(dirname(__FILE__) . '/includes/wp-mail-api.php');
-			// 		endif;
-			// 	endif;
-			// else:
-			// 	// Using SMTP, include the SMTP filter
-			// 	if (!function_exists('km_smtp_mail_filter')):
-			// 		if (!include dirname(__FILE__) . '/includes/wp-mail-smtp.php'):
-			// 			self::deactivate_and_die(dirname(__FILE__) . '/includes/wp-mail-smtp.php');
-			// 		endif;
-			// 	endif;
-			// 	add_filter('wp_mail', 'km_smtp_mail_filter');
-			// 	add_action('phpmailer_init', array(&$this, 'phpmailer_init'));
-			// 	add_action('wp_mail_failed', 'wp_mail_failed');
-			// endif;
 		}
 
 		/**
@@ -328,8 +307,8 @@
 	}
 
 
-if ( ! defined( 'KM_PLUGIN_VER' ) ) {
-	define( 'KM_PLUGIN_VER', '0.2' );
+if ( ! defined( 'KINGMAILERCO_SMTP_PLUGIN_VER' ) ) {
+	define( 'KINGMAILERCO_SMTP_PLUGIN_VER', '0.2' );
 }
 
 $kingmailer = new Kingmailer();

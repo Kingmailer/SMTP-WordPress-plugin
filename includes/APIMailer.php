@@ -439,7 +439,7 @@ class APIMailer {
 
 		// TODO: test if adding an XMailer will improve the chances of something not being labelled spam
 		// Define a custom header, that will be used to identify the plugin and the mailer.
-		// $this->set_body_header( 'X-Mailer', 'Kingmailer ' . KM_PLUGIN_VER);
+		// $this->set_body_header( 'X-Mailer', 'Kingmailer ' . KINGMAILERCO_SMTP_PLUGIN_VER);
 
 	}
 

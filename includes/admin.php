@@ -117,7 +117,7 @@
 		 */
 		public function admin_js()
 		{
-			$script_version = defined('KM_PLUGIN_VER') ? KM_PLUGIN_VER : '';
+			$script_version = defined('KINGMAILERCO_SMTP_PLUGIN_VER') ? KINGMAILERCO_SMTP_PLUGIN_VER : '';
 			$translation_array = array(
 				'test_confirmation' => __('You are trying to send a test mail without saving your changes, i.e. your test mail will use the previous settings.\n\nClick "Cancel" and then "Save Changes" if you wish to save your changes before sending the test mail.', 'kingmailer'),
 				'test_testing' => __('Testing...', 'kingmailer'),
@@ -132,9 +132,9 @@
 			// Add the translations	and AJAX info
 			$url = plugins_url('/js/admin.js', $this->plugin_file  );
 
-			wp_enqueue_script( 'km_admin_js', plugins_url('/js/admin.js', $this->plugin_file  ),  array( 'jquery' ), $script_version, false );
-			wp_localize_script('km_admin_js', 'km_admin_js_i18n', $translation_array);
-			wp_localize_script('km_admin_js', 'km_admin_js_ajax', $ajax_array );
+			wp_enqueue_script( 'kingmailerco_smtp_admin_js', plugins_url('/js/admin.js', $this->plugin_file  ),  array( 'jquery' ), $script_version, false );
+			wp_localize_script('kingmailerco_smtp_admin_js', 'kingmailerco_smtp_admin_js_i18n', $translation_array);
+			wp_localize_script('kingmailerco_smtp_admin_js', 'kingmailerco_smtp_admin_js_ajax', $ajax_array );
 		}
 
 		/**
@@ -320,29 +320,6 @@
 					'kingmailer'), $method),
 				array('Content-Type: text/plain')
 			);
-
-
-
-
-			
-
-			// if ((bool) $use_api):
-			// 	if (!function_exists('km_api_last_error')):
-			// 		if (!include dirname(__FILE__) . '/wp-mail-api.php'):
-			// 			self::deactivate_and_die(dirname(__FILE__) . '/wp-mail-api.php');
-			// 		endif;
-			// 	endif;
-
-			// 	$error_msg = km_api_last_error();
-			// else:
-			// 	if (!function_exists('km_smtp_last_error')):
-			// 		if (!include dirname(__FILE__) . '/wp-mail-smtp.php'):
-			// 			self::deactivate_and_die(dirname(__FILE__) . '/wp-mail-smtp.php');
-			// 		endif;
-			// 	endif;
-
-			// 	$error_msg = km_smtp_last_error();
-			// endif;
 
 			if ($result):
 				die(

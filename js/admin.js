@@ -25,29 +25,29 @@ jQuery().ready(function () {
 
         // Give the user a validation message
         if (formModified) {
-            var doTest = confirm(km_admin_js_i18n.test_confirmation);
+            var doTest = confirm(kingmailerco_smtp_admin_js_i18n.test_confirmation);
             if (!doTest) {
                 return false
             }
         }
 
         // Print testing message to screen
-        jQuery(this).val(km_admin_js_i18n.test_testing)        
+        jQuery(this).val(kingmailerco_smtp_admin_js_i18n.test_testing)        
         jQuery('#kingmailer-test-result').text('')
 
         // Send Ajax request to the server
         jQuery.get(
-            km_admin_js_ajax.ajax_url,
+            kingmailerco_smtp_admin_js_ajax.ajax_url,
             {
                 action: 'kingmailer-test',
-                _wpnonce: km_admin_js_ajax.ajax_nonce
+                _wpnonce: kingmailerco_smtp_admin_js_ajax.ajax_nonce
             }
         ).complete(function () {
-            jQuery('#kingmailer-test').val(km_admin_js_i18n.test_send_mail)
+            jQuery('#kingmailer-test').val(kingmailerco_smtp_admin_js_i18n.test_send_mail)
         }).success(function (data) {
             alert('Kingmailer ' + data.method + ' Test ' + data.message)
         }).error(function () {
-            alert('Kingmailer Test ' + km_admin_js_i18n.test_failed)
+            alert('Kingmailer Test ' + kingmailerco_smtp_admin_js_i18n.test_failed)
         });
 
     });
