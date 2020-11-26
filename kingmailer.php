@@ -3,7 +3,7 @@
 	/**
 	 * Plugin Name:  Kingmailer SMTP
 	 * Plugin URI:   https://github.com/Kingmailer/WordPress-SMTP
-	 * Description:  SMTP server for WooCommerce stores, forums, registration and password reset emails.
+	 * Description:  The #1 Mailgun alternative build for sending transactional emails. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface. Upgrade cost $5 p/mo.
 	 * Version:      0.2
 	 * Requires at least: 3.3
 	 * Author:       Kingmailer
