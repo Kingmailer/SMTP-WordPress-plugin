@@ -1,4 +1,4 @@
-Kingmailer for WordPress
+Kingmailer SMTP
 =====================
 
 Contributors: Krishna Moniz, Navin Poeran
@@ -24,7 +24,7 @@ This plugin is based on the Mailgun for WordPress plugin and also WP Mail SMTP .
 
 == Installation ==
 
-1. Upload the `WordPress-SMTP` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
+1. Upload the `kingmailer-smtp` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
 2. Activate the plugin through the 'Plugins' menu in WordPress or by using the link provided by the plugin installer
 3. Visit the settings page in the Admin at `Settings -> Kingmailer` and configure the plugin with your account details
 4. Click the Test Configuration button to verify that your settings are correct.
