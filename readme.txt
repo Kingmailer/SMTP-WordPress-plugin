@@ -9,7 +9,7 @@ Stable tag: 0.2
 License: GPLv2 or later
 
 
-Easily send email from your WordPress site through Kingmailer using the HTTP API.
+The #1 Mailgun alternative build for sending transactional emails. $5 p/mo. Try for free. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface.
 
 
 == Description ==
