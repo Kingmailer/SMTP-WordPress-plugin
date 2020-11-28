@@ -67,24 +67,15 @@ class MailCatcher extends \PHPMailer implements MailCatcherInterface {
 	 */
 	public function send() {
 
-
-
-
 		// Get the plugin options. These specify the mailer type
-		$options = get_option('kingmailer',  
-			array(
-				'mail_method' => 'smtp'
-		  ));
-
-		// Get the mail method (it should default to 'smtp')
-		$mail_method = $options['mail_method'];
+		$options = get_option('kingmailer');
 
 		// TODO: test if adding an XMailer will improve the chances of something not being labelled spam
 		// Define a custom header, that will be used to identify the plugin and the mailer.
 		// $this->XMailer = 'Kingmailer ' . KINGMAILERCO_SMTP_PLUGIN_VER;
 
 		// Use the default PHPMailer if the user specified SMTP
-		if ($mail_method === 'mail' || $mail_method === 'smtp') {
+		if (! (bool) $options['use_api']) {
 			try {
 				// Allow to hook early to catch any early failed emails.
 				do_action( 'kingmailer_smtp_pre_send_before', $this );

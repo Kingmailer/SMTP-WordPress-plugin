@@ -66,27 +66,17 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 	 * @return bool
 	 */
 	public function send() { // phpcs:ignore
-
-
 	
 		// Get the plugin options. These specify the mailer type
-		$options = get_option('kingmailer',  
-			array(
-				"mail_method" => "smtp"
-		  ));
-
-		// Get the mail method (it should default to 'smtp')
-		$mail_method = $options['mail_method'];
+		$options = get_option('kingmailer');
 
 		// TODO: test if adding an XMailer will improve the chances of something not being labelled spam
 		// Define a custom header, that will be used to identify the plugin and the mailer.
 		// $this->XMailer = 'Kingmailer ' . KINGMAILERCO_SMTP_PLUGIN_VER;
 
 		// Use the default PHPMailer if the user specified SMTP
-		if ($mail_method === 'mail' || $mail_method === 'smtp') {
+		if (! (bool) $options['use_api']) {
 			try {
-
-
 				// Allow to hook early to catch any early failed emails.
 				do_action( 'kingmailer_smtp_pre_send_before', $this );
 
@@ -102,7 +92,6 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 				return $this->postSend();
 
 			} catch ( \PHPMailer\PHPMailer\Exception $e ) {
-
 				// Clear the mail header and throw an error if found
 				$this->mailHeader = ''; // phpcs:ignore
 				$this->setError( $e->getMessage() );
@@ -116,9 +105,6 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 		// We need this so that the \PHPMailer class will correctly prepare all the headers.
 		$this->Mailer = 'mail';  // phpcs:ignore
 
-
-
-
 		// Prepare everything (including the message) for sending.
 		if ( ! $this->preSend() ) {
 			return false;
@@ -130,26 +116,19 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 		if ( ! $api_mailer ) {
 			return false;
 		}
+		
 		/*
 		 * Send the actual email.
 		 * We reuse everything, that was preprocessed for usage in PHPMailer.
 		 */
 		$api_mailer->send();
 
-
-
 		$is_sent = $api_mailer->is_email_sent();
-
-
 
 		// Allow to perform any actions with the data.
 		do_action( 'kingmailer_smtp_send_after', $api_mailer, $this );
 
-
-
-
 		return $is_sent;
-
 	}
 
 	/**

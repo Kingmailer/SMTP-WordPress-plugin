@@ -179,7 +179,6 @@
 		 */
 		public function phpmailer_init($phpmailer)
 		{
-
 			$options = get_option('kingmailer');
 
 			$from = $options['from-address'];
@@ -192,33 +191,22 @@
 
 			$host = (defined('KINGMAILER_HOST') && KINGMAILER_HOST) ? KINGMAILER_HOST : $options['host'];
 			$secure = (defined('KINGMAILER_SECURE') && KINGMAILER_SECURE) ? KINGMAILER_SECURE : $options['secure'];
-			$sectype = (defined('KINGMAILER_SECTYPE') && KINGMAILER_SECTYPE) ? KINGMAILER_SECTYPE : $options['sectype'];
-			$username = preg_replace('/@.+$/', '', $username) . "@{$domain}";	// TODO Krishna wat doet username?
+			$username = (defined('KINGMAILER_USERNAME') && KINGMAILER_USERNAME) ? KINGMAILER_USERNAME : $options['username'];
 			$password = (defined('KINGMAILER_PASSWORD') && KINGMAILER_PASSWORD) ? KINGMAILER_PASSWORD : $options['password'];
-
-			if( ! $options['use_api'])
+			$smtp_port = $options['smtp_port'];
+	
+			if( ! (bool) $options['use_api'])
 			{
+
 				$phpmailer->isSMTP();     
 				$phpmailer->Host = (bool) $host ? $host : 'kingmailer.org';
-				$phpmailer->SMTPSecure = (bool) $secure ? $sectype : '';
+				$phpmailer->Port = $smtp_port ;
+				$phpmailer->Username = $username;
+				$phpmailer->Password = $password;
 
-				if ( ! (bool) $secure)
-				{
-					$phpmailer->Port = 25;
-				} else 
-				{
-					if ('ssl' === $sectype):
-						// For SSL-only connections, use 465
-						$phpmailer->Port = 465;
-					else:
-						// Otherwise, use 587.
-						$phpmailer->Port = 587;
-					endif;
-					$phpmailer->SMTPAuth = true; // Ask it to use authenticate using the Username and Password properties
-					$phpmailer->Username = $username;
-					$phpmailer->Password = $password;
-		
-				}
+				// Authentication required for kingmailer (we ignore the secure flag and always set it to TLS)
+				$phpmailer->SMTPAuth = true; // Ask it to use authenticate using the Username and Password properties
+				$phpmailer->SMTPSecure = 'tls';
 			}
 		}
 
@@ -257,6 +245,7 @@
 		 */
 		public function api_call($uri, $params = array(), $method = 'POST')
 		{
+
 			$options = get_option('kingmailer');
 			$api_key = (defined('KINGMAILER_APIKEY') && KINGMAILER_APIKEY) ? KINGMAILER_APIKEY : $options[ 'api_key' ];
 			$domain = (defined('KINGMAILER_DOMAIN') && KINGMAILER_DOMAIN) ? KINGMAILER_DOMAIN : $options[ 'domain' ];
@@ -321,3 +310,24 @@ if (is_admin()){
 		Kingmailer::deactivate_and_die(dirname(__FILE__) . '/includes/admin.php');
 	}
 }
+
+
+/**
+ * 
+ * Temporary function to for error checking
+ */
+function km_error_log($string, $source = "Unknown source")
+{
+	$object_output = "";
+
+	if(is_object($string) || is_array($string)) {
+		foreach($string as $key => $value) {
+			$object_output .= "[" . $key . "] => " . $value . " | ";
+		}
+		error_log( "\n" . $source . ": " . $object_output , 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
+	} else {
+		error_log( "\n" . $source . ": " . $string, 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
+	}
+
+}
+

@@ -76,10 +76,7 @@
 				'username' => '',
 				'password' => '',
 				'secure' => '1',
-				// 'sectype' => 'tls',
-				// 'track-clicks' => '',
-				// 'track-opens' => '',
-				// 'campaign-id' => '',
+				'smtp_port' => '587',
 				'override-from' => '0'
 			);
 			
@@ -123,6 +120,8 @@
 				'test_testing' => __('Testing...', 'kingmailer'),
 				'test_failed' => __('Failure', 'kingmailer'),
 				'test_send_mail' => __('Send Test Mail', 'kingmailer'),
+				'test_sent_using' => __('Kingmailer test mail sent using', 'kingmailer'),
+				'test_mail_failed' => __('Kingmailer test mail failed.', 'kingmailer'),
 			);
 			$ajax_array = array(
 				'ajax_url' => admin_url('admin-ajax.php'),
@@ -229,10 +228,6 @@
 				$options[ 'override-from' ] = $this->defaults[ 'override-from' ];
 			endif;
 
-			if (empty($options[ 'sectype' ])):
-				$options[ 'sectype' ] = $this->defaults[ 'sectype' ];
-			endif;
-
 			$this->options = $options;
 
 			return $options;
@@ -301,15 +296,12 @@
 
 			$use_api = (defined('KINGMAILER_USEAPI') && KINGMAILER_USEAPI) ? KINGMAILER_USEAPI : $this->get_option('use_api');
 			$secure = (defined('KINGMAILER_SECURE') && KINGMAILER_SECURE) ? KINGMAILER_SECURE : $this->get_option('secure');
-			$sectype = (defined('KINGMAILER_SECTYPE') && KINGMAILER_SECTYPE) ? KINGMAILER_SECTYPE : $this->get_option('sectype');
 
 			if ((bool) $use_api):
 				$method = __('HTTP API', 'kingmailer');
 			else:
-				$method = ((bool) $secure) ? __('Secure SMTP', 'kingmailer') : __('Insecure SMTP', 'kingmailer');
-				if ((bool) $secure):
-					$method = $method . sprintf(__(' via %s', 'kingmailer'), $sectype);
-				endif;
+				// Authentication required for kingmailer (we ignore the secure flag and always set it to TLS)
+				$method = __('Secure SMTP (TLS)', 'kingmailer');
 			endif;
 
 			$admin_email = get_option('admin_email');

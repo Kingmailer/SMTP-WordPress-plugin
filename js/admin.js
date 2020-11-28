@@ -45,9 +45,9 @@ jQuery().ready(function () {
         ).complete(function () {
             jQuery('#kingmailer-test').val(kingmailerco_smtp_admin_js_i18n.test_send_mail)
         }).success(function (data) {
-            alert('Kingmailer ' + data.method + ' Test ' + data.message)
+            alert(kingmailerco_smtp_admin_js_i18n.test_sent_using + ' ' +  data.method + ' - ' + data.message)
         }).error(function () {
-            alert('Kingmailer Test ' + kingmailerco_smtp_admin_js_i18n.test_failed)
+            alert(kingmailerco_smtp_admin_js_i18n.test_mail_failed)
         });
 
     });

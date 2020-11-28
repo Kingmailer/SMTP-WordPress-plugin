@@ -126,7 +126,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" style="display: none;">
+			<tr valign="top">
 				<th scope="row">
 					<?php _e('Use HTTP API', 'kingmailer'); ?>
 				</th>
@@ -172,7 +172,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" class="kingmailer-smtp" style="display: none;">
+			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php _e('SMTP-host', 'kingmailer'); ?>
 				</th>
@@ -190,7 +190,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" class="kingmailer-smtp" style="display: none;">
+			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php _e('Username', 'kingmailer'); ?>
 				</th>
@@ -207,7 +207,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" class="kingmailer-smtp" style="display: none;">
+			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php _e('Password', 'kingmailer'); ?>
 				</th>
@@ -224,38 +224,39 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" class="kingmailer-smtp" style="display: none;">
+			<!-- <tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php _e('Use Secure SMTP', 'kingmailer'); ?>
+					<?php // _e('Use Secure SMTP', 'kingmailer'); ?>
 				</th>
 				<td>
 					<select name="kingmailer[secure]">
-						<option value="1"<?php selected('1', $this->get_option('secure')); ?>><?php _e('Yes', 'kingmailer'); ?></option>
-						<option value="0"<?php selected('0', $this->get_option('secure')); ?>><?php _e('No', 'kingmailer'); ?></option>
+						<option value="1"<?php // selected('1', $this->get_option('secure')); ?>><?php _e('Yes', 'kingmailer'); ?></option>
+						<option value="0"<?php // selected('0', $this->get_option('secure')); ?>><?php _e('No', 'kingmailer'); ?></option>
 					</select>
 					<p class="description">
-						<?php _e('Set this to "Yes" to send you mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer'); ?>
+						<?php // _e('Set this to "Yes" to send your mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer'); ?>
+						<br />
+						<?php // _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+					</p>
+				</td>
+			</tr> -->
+			<tr valign="top" class="kingmailer-smtp">
+				<th scope="row">
+					<?php _e('Port number', 'kingmailer'); ?>
+				</th>
+				<td>
+					<input type="text" class="regular-text"
+						   name="kingmailer[smtp_port]"
+						   value="<?php esc_attr_e($this->get_option('smtp_port')); ?>"
+						   placeholder="587"
+					/>
+					<p class="description">
+						<?php _e('Specify which port to use for SMTP mailing. Kingmailer only allows for standard SMTP ports (25, 465, and 587). Defaults to "587"', 'kingmailer'); ?>
 						<br />
 						<?php _e('Only valid for use with SMTP.', 'kingmailer'); ?>
 					</p>
 				</td>
 			</tr>
-			<!-- <tr valign="top" class="kingmailer-smtp">
-				<th scope="row">
-					<?php // _e('Security Type', 'kingmailer'); ?>
-				</th>
-				<td>
-					<select name="kingmailer[sectype]">
-						<option value="ssl"<?php  // selected('ssl', $this->get_option('sectype')); ?>>SSL</option>
-						<option value="tls"<?php // selected('tls', $this->get_option('sectype')); ?>>TLS</option>
-					</select>
-					<p class="description">
-						<?php
-						//	_e('Leave this at "TLS" unless mail sending fails. This option only matters for Secure SMTP. Default "TLS".', 'kingmailer');
-						?>
-					</p>
-				</td>
-			</tr> -->
 		</table>
 		<p>
 			<?php

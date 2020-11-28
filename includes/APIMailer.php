@@ -401,7 +401,7 @@ class APIMailer {
 			$this->set_body_header( $name, $value );
 		}
 
-		// Set the sender
+		// Set the sender		
 		$this->set_from( $this->phpmailer->From, $this->phpmailer->FromName );
 		$this->set_from( $this->phpmailer->From, $this->phpmailer->FromName, 'sender' );
 		
