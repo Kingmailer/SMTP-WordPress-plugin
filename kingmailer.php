@@ -311,23 +311,3 @@ if (is_admin()){
 	}
 }
 
-
-/**
- * 
- * Temporary function to for error checking
- */
-function km_error_log($string, $source = "Unknown source")
-{
-	$object_output = "";
-
-	if(is_object($string) || is_array($string)) {
-		foreach($string as $key => $value) {
-			$object_output .= "[" . $key . "] => " . $value . " | ";
-		}
-		error_log( "\n" . $source . ": " . $object_output , 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
-	} else {
-		error_log( "\n" . $source . ": " . $string, 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
-	}
-
-}
-
