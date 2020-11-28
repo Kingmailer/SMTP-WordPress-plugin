@@ -1,53 +1,185 @@
-Kingmailer SMTP
+Kingmailer WordPress SMTP
 =====================
 
-Contributors: Krishna Moniz, Navin Poeran
-Tags: kingmailer, smtp, http, api, mail, email, routing
+Contributors: kingmailer, chandersbs
+Tags: wordpress smtp, mailgun smtp, sendgrid smtp, gmail smtp, smtp, kingmailer
 Requires at least: 3.3
 Tested up to: 5.5.1
 Stable tag: 0.2
 License: GPLv2 or later
 
-
-The #1 Mailgun alternative build for sending transactional emails. $5 p/mo. Try for free. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface.
-
+Improve your WordPress SMTP: send emails to users' inbox using Kingmailer WordPress SMTP plugin.
 
 == Description ==
 
-[Kingmailer](https://kingmailer.co/) is a simple and fully featured mail server / SMTP service build for sending transactional emails. Think Sendgrid and Mailgun but our focus is solely on delivery of transactional emails. Start sending, receiving or routing emails with a few clicks.
+### Kingmailer WordPress SMTP: the #1 WordPress SMTP plugin
 
-Our service is build for people who want a mail server / SMTP service to be simple and easy to use. Every month, thousands of emails are sent, received, routed using our delightful and powerful SMTP service. Try for free.
+Since 2017 Kingmailer WordPress SMTP has powered thousands of websites worldwide in delivering emails to **users' inbox**.
 
-This plugin provides you with a way to send email when the server you are on does not support SMTP or where outbound SMTP is restricted by using the Kingmailer HTTP API for sending email. 
+Kingmailer's mission is **affordable SMTP for Everyone**. We are working day and night to give the highest quality SMTP email delivery service to everyone. 
 
-This plugin is based on the Mailgun for WordPress plugin and also WP Mail SMTP . 
+Kingmailer [WordPress SMTP](https://kingmailer.co/) plugin contains the important settings fields to manage your SMTP. You will need to add/verify your domain first in your Kingmailer-account.
+
+#### AFFORDABLE PRICING
+While you can use our service for free, upgrades only cost **$5 p/month**. This will help you save a lot in monthly costs and at the same time help you deliver your emails to users' inbox. We also accept Bitcoin.
+
+Kingmailer WordPress SMTP is the most trusted email delivery platform by developers, webmasters, small business and startup owners.
+
+#### TAKING CARE OF YOUR WORDPRESS SMTP
+Kingmailer is packed full of features, designed for you to see all your email traffic, inbound and outbound email traffic. By going into your Kingmailer account you get access to all sorts of information. Some features are:
+
+* Real-time results
+* Email statistics
+* Webhooks & integrations
+* Flexible SMTP APIs
+* Optimal delivery
+* Message archive & Logs
+
+#### HIGH INBOX DELIVERY
+
+We are a transactional only WordPress SMTP email service, this means high inbox delivery. 
+
+If your emails land in the junk / spam folder, check the following:
+
+* Is your domain or IP blacklisted?
+* Does your domain have a poor sending reputation?
+* Is there some configuration error on your web server?
+
+#### TRUST THE EXPERTS
+
+Kingmailer is powered by a team of expert developers, sysadmins and SMTP consultants. They work constantly to stay at the cutting edge of WordPress SMTP and to improve the plugin with every release.
+
+Kingmailer WordPress SMTP is the **only Wordpress SMTP plugin made by world-renowned SMTP experts**.
+
 
 == Installation ==
+Starting with Kingmailer WordPress SMTP consists of just two steps: installing and setting up the plugin. Kingmailer WordPress SMTP is designed to work with the wp_mail functionality and will relay all emails.
 
-1. Upload the `kingmailer-smtp` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
-2. Activate the plugin through the 'Plugins' menu in WordPress or by using the link provided by the plugin installer
-3. Visit the settings page in the Admin at `Settings -> Kingmailer` and configure the plugin with your account details
-4. Click the Test Configuration button to verify that your settings are correct.
+### INSTALL KINGMAILER WORDPRESS SMTP FROM WITHIN WORDPRESS
 
+1. Visit the plugins page within your dashboard and select ‘Add New’;
+1. Search for ‘Kingmailer WordPress SMTP’;
+1. Activate Kingmailer WordPress SMTP from your Plugins page;
+1. Go to ‘after activation’ below.
+
+### INSTALL KINGMAILER WORDPRESS SMTP MANUALLY
+
+1. Upload the ‘kingmailer-smtp’ folder to the /wp-content/plugins/ directory;
+1. Activate the Kingmailer WordPress SMTP plugin through the ‘Plugins’ menu in WordPress;
+1. Go to ‘after activation’ below.
+
+### AFTER ACTIVATION
+
+1. You should see Settings button;
+1. Go through the settings page and set up the plugin for your site;
+1. You’re done!
 
 == Frequently Asked Questions ==
 
-- Testing the configuration fails when using the HTTP API
+= Can I use Kingmailer WordPress SMTP to send spam/bulk marketing newsletters? =
+
+No.
+
+= Can I use Kingmailer WordPress SMTP to send marketing newsletters? =
+
+No.
+
+= What types of emails are allowed with Kingmailer WordPress SMTP? =
+
+Currently only transactional emails. 
+
+= What are transactional emails? =
+
+These are emails usually generated by your WordPress site, some examples are: 
+
+1. Account alerts (subscription ending, credit card expiring, etc.)
+1. Abandoned cart notifications
+1. Event notifications
+1. Order confirmations and purchase receipts
+1. Responses to customer service inquiries
+1. Password reminders or resets
+1. Requests for feedback
+1. Subscription welcome emails
+
+= Which fields are in the Kingmailer WordPress SMTP plugin? =
+
+The Kingmailer WordPress SMTP plugin is very simple and has the following fields:
+
+1. Your domain
+1. From name
+1. From address
+1. API-key
+
+= Do I need a Kingmailer account to make this work? =
+
+Yes.
+
+= How or where do I get a Kingmailer account? =
+
+1. Visit [Kingmailer.co](https://Kingmailer.co) click on sign up.
+1. Click on the link in the activation email to activate your account
+1. You now have a Kingmailer-account.
+
+= How much does Kingmailer cost? =
+
+Kingmailer, in case you will upgrade, only costs **$5 p/mo**, you can sign up and test for free. No credit card required.
+
+= Does Kingmailer WordPress SMTP work with WooCommerce? =
+
+Yes. Kingmailer WordPress SMTP works perfectly with WooCommerce.
+
+= Which plugins work with Kingmailer WordPress SMTP? =
+
+Woocommerce
+WPForms
+Elementor Forms
+Contact Form 7
+Gravity Forms
+Fast Secure Contact Form
+Visual Forms Builder
+Contact Form Builder
+PlanSo Forms
+Quform
+MyMail Newsletter by revaxarts
+SendPress Newsletters
+WP HTML Mail
+Email Templates
+WordPress Leads
+...etc
+
+All plugins that uses the WordPress API wp_mail to send emails.
+
+= Which port does Kingmailer support? =
+
+The Kingmailer WordPress SMTP plugin is designed for port 587. Other ports that we support are 25, 2525 and 465.
+
+= Is the connection encrypted? =
+
+Yes. All emails are encypted with TLS.
+
+= Does Kingmailer also accept Bitcoin? =
+
+Yes.
+
+= Testing the configuration fails when using the HTTP API =
 
 Your web server may not allow outbound HTTP connections. Set `Use HTTP API` to "No", and fill out the configuration options to SMTP and test again. A different possibility may be: your server IP is blocked by Spamhaus or other services that regulates spam. Please check if your IP is not blacklisted. 
 
-- Can this be configured globally for WordPress Multisite?
+= Can Kingmailer WordPress SMTP be configured globally for WordPress Multisite? =
 
-This plugin is not yet tested with WordPress Multisite.
+Kingmailer WordPress SMTP plugin is not yet tested with WordPress Multisite.
 
-- The plain text alternative of my mail looks different from my template.
+= The plain text alternative of my mail looks different from my template =
 
 Plain text alternatives are for mail clients that cannot process HTML. As such, html tags are stripped from the plain text alternative. This is done before applying the wp_mail filters.
+
+= How do I get support? =
+
+Feel free to send us an email wordpress@kingmailer.co or start a topic in the support forum.
 
 == Screenshots ==
 
 1. Configuration options for using the Kingmailer HTTP API
-2. Configuration options for using the Kingmailer SMTP servers
 
 
 == Changelog ==

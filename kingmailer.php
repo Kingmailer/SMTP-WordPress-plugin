@@ -3,7 +3,7 @@
 	/**
 	 * Plugin Name:  Kingmailer SMTP
 	 * Plugin URI:   https://wordpress.org/plugins/kingmailer-smtp/
-	 * Description:  The #1 Mailgun alternative build for sending transactional emails. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface. Upgrade cost $5 p/mo.
+	 * Description:  The #1 Mailgun alternative build for sending transactional emails. $5 p/mo. Try for free. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface.
 	 * Version:      0.2
 	 * Requires at least: 3.3
 	 * Author:       Kingmailer
