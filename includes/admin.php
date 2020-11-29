@@ -265,7 +265,7 @@
 
 			if ($this->get_option('override-from') === '1' && (!$this->get_option('from-name') || !$this->get_option('from-address'))):
 				echo ('<div id="kingmailer-warning" class="notice notice-warning is-dismissible"><p><strong>');
-				_e('Kingmailer is almost ready. ', 'kingmailer');
+				_e('Kingmailer is almost ready.', 'kingmailer');
 				echo ('</strong></p></div>');
 			endif;
 		}
