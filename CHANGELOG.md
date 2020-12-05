@@ -1,6 +1,18 @@
 Changelog
 =========
 
+0.3.04 (2020-12-05):
+* Updated text domain
+
+0.3.03 (2020-12-05):
+* Bug fixes
+
+0.3.02 (2020-11-29):
+* Updated text domain
+
+0.3.01 (2020-11-29):
+* Add language file
+
 0.3.0 (2020-11-28):
 * Add SMTP functionality
 

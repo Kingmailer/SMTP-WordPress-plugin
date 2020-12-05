@@ -24,14 +24,14 @@
 <div class="wrap">
 	<div id="icon-options-general" class="icon32"><br/></div>
 
-	<h2><?php _e('Kingmailer', 'kingmailer'); ?></h2>
+	<h2><?php _e('Kingmailer', 'kingmailer-smtp'); ?></h2>
 
 	<p>
 		<?php
 			$url = 'https://kingmailer.co/';
 			$link = sprintf(
 				wp_kses(
-					__('A <a href="%1$s" target="%2$s">Kingmailer</a> account is required to use this plugin and the Kingmailer service.', 'kingmailer'),
+					__('A <a href="%1$s" target="%2$s">Kingmailer</a> account is required to use this plugin and the Kingmailer service.', 'kingmailer-smtp'),
 					array('a' => array(
 							'href' => array(),
 							'target' => array()
@@ -43,14 +43,14 @@
 		?>
 	</p>
 
-	<h3><?php _e('Configuration', 'kingmailer'); ?></h3>
+	<h3><?php _e('Configuration', 'kingmailer-smtp'); ?></h3>
 	<form id="kingmailer-form" action="options.php" method="post">
-		<?php settings_fields('kingmailer'); ?>
+		<?php settings_fields('kingmailer-smtp'); ?>
 
 		<table class="form-table">
 		<tr valign="top">
 				<th scope="row">
-					<?php _e('Your Domain', 'kingmailer'); ?>
+					<?php _e('Your Domain', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -62,7 +62,7 @@
 						<?php
 							$link = sprintf(
 								wp_kses(
-									__('The domain you have added in your Kingmailer-account. Visit <a href="%1$s" target="%2$s">Kingmailer.co</a> to sign up for an account.', 'kingmailer'),
+									__('The domain you have added in your Kingmailer-account. Visit <a href="%1$s" target="%2$s">Kingmailer.co</a> to sign up for an account.', 'kingmailer-smtp'),
 									array('a' => array(
 											'href' => array(),
 											'target' => array()
@@ -77,7 +77,7 @@
 			</tr>
 			<tr valign="top">
 				<th scope="row">
-					<?php _e('From Name', 'kingmailer'); ?>
+					<?php _e('From Name', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -87,14 +87,14 @@
 					/>
 					<p class="description">
 						<?php
-							_e('The "User Name" part of the sender information. This can be your domain name.', 'kingmailer');
+							_e('The "User Name" part of the sender information. This can be your domain name.', 'kingmailer-smtp');
 						?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row">
-					<?php _e('From Address', 'kingmailer'); ?>
+					<?php _e('From Address', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text"
@@ -105,46 +105,46 @@
 					/>
 					<p class="description">
 						<?php
-							_e('The &lt;info@example.com&gt; part of the sender information. This address will appear as the `From` address on sent mail. <strong>It is recommended that the @mydomain portion matches your Kingmailer sending domain.</strong>', 'kingmailer');
+							_e('The &lt;info@example.com&gt; part of the sender information. This address will appear as the `From` address on sent mail. <strong>It is recommended that the @mydomain portion matches your Kingmailer sending domain.</strong>', 'kingmailer-smtp');
 						?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row">
-					<?php _e('Override "From" Details', 'kingmailer'); ?>
+					<?php _e('Override "From" Details', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<select name="kingmailer[override-from]">
-						<option value="1"<?php selected('1', $this->get_option('override-from', null, '1')); ?>><?php _e('Yes', 'kingmailer'); ?></option>
-						<option value="0"<?php selected('0', $this->get_option('override-from', null, '0')); ?>><?php _e('No', 'kingmailer'); ?></option>
+						<option value="1"<?php selected('1', $this->get_option('override-from', null, '1')); ?>><?php _e('Yes', 'kingmailer-smtp'); ?></option>
+						<option value="0"<?php selected('0', $this->get_option('override-from', null, '0')); ?>><?php _e('No', 'kingmailer-smtp'); ?></option>
 					</select>
 					<p class="description">
 						<?php
-							_e('If enabled, all emails will be sent with the above <code>From Name</code> and <code>From Address</code>, regardless of values set by other plugins. Useful for cases where other plugins don\'t play nice with our settings. Defaults to "Yes".', 'kingmailer');
+							_e('If enabled, all emails will be sent with the above <code>From Name</code> and <code>From Address</code>, regardless of values set by other plugins. Useful for cases where other plugins don\'t play nice with our settings. Defaults to "Yes".', 'kingmailer-smtp');
 						?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row">
-					<?php _e('Use HTTP API', 'kingmailer'); ?>
+					<?php _e('Use HTTP API', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<select id="kingmailer-api" name="kingmailer[use_api]">
-						<option value="1"<?php selected('1', $this->get_option('use_api')); ?>><?php _e('Yes', 'kingmailer'); ?></option>
-						<option value="0"<?php selected('0', $this->get_option('use_api')); ?>><?php _e('No', 'kingmailer'); ?></option>
+						<option value="1"<?php selected('1', $this->get_option('use_api')); ?>><?php _e('Yes', 'kingmailer-smtp'); ?></option>
+						<option value="0"<?php selected('0', $this->get_option('use_api')); ?>><?php _e('No', 'kingmailer-smtp'); ?></option>
 					</select>
 					<p class="description">
 						<?php
-							_e('Set this to "No" if your server cannot make outbound HTTP connections or if emails are not being delivered. "No" will cause this plugin to use SMTP. Defaults to "Yes".', 'kingmailer');
+							_e('Set this to "No" if your server cannot make outbound HTTP connections or if emails are not being delivered. "No" will cause this plugin to use SMTP. Defaults to "Yes".', 'kingmailer-smtp');
 						?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top" class="kingmailer-api">
 				<th scope="row">
-					<?php _e('API-host', 'kingmailer'); ?>
+					<?php _e('API-host', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -154,13 +154,13 @@
 						   readonly
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer API-host. Fixed at "kingmailer.org"', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer API-host. Fixed at "kingmailer.org"', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top" class="kingmailer-api">
 				<th scope="row">
-					<?php _e('API Key', 'kingmailer'); ?>
+					<?php _e('API Key', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text" name="kingmailer[api_key]"
@@ -168,13 +168,13 @@
 						   placeholder="ur7keAGRjYB3W5NfKQEm563Z"
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer API key. Create an API by visiting the credentials section in your Kingmailer-account.', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer API key. Create an API by visiting the credentials section in your Kingmailer-account.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php _e('SMTP-host', 'kingmailer'); ?>
+					<?php _e('SMTP-host', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -184,15 +184,15 @@
 						   readonly
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer SMTP-host. Fixed at "kingmailer.org"', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer SMTP-host. Fixed at "kingmailer.org"', 'kingmailer-smtp'); ?>
 						<br />
-						<?php _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+						<?php _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php _e('Username', 'kingmailer'); ?>
+					<?php _e('Username', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -201,15 +201,15 @@
 						   placeholder="postmaster"
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer SMTP username.', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer SMTP username.', 'kingmailer-smtp'); ?>
 						<br />
-						<?php _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+						<?php _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php _e('Password', 'kingmailer'); ?>
+					<?php _e('Password', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -218,31 +218,31 @@
 						   placeholder="my-password"
 					/>
 					<p class="description">
-						<?php _e('Your Kingmailer SMTP password that goes with the above username.', 'kingmailer'); ?>
+						<?php _e('Your Kingmailer SMTP password that goes with the above username.', 'kingmailer-smtp'); ?>
 						<br />
-						<?php _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+						<?php _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 			<!-- <tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php // _e('Use Secure SMTP', 'kingmailer'); ?>
+					<?php // _e('Use Secure SMTP', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<select name="kingmailer[secure]">
-						<option value="1"<?php // selected('1', $this->get_option('secure')); ?>><?php _e('Yes', 'kingmailer'); ?></option>
-						<option value="0"<?php // selected('0', $this->get_option('secure')); ?>><?php _e('No', 'kingmailer'); ?></option>
+						<option value="1"<?php // selected('1', $this->get_option('secure')); ?>><?php // _e('Yes', 'kingmailer-smtp'); ?></option>
+						<option value="0"<?php // selected('0', $this->get_option('secure')); ?>><?php // _e('No', 'kingmailer-smtp'); ?></option>
 					</select>
 					<p class="description">
-						<?php // _e('Set this to "Yes" to send your mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer'); ?>
+						<?php // _e('Set this to "Yes" to send your mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer-smtp'); ?>
 						<br />
-						<?php // _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+						<?php // _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr> -->
 			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
-					<?php _e('Port number', 'kingmailer'); ?>
+					<?php _e('Port number', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
@@ -251,27 +251,27 @@
 						   placeholder="587"
 					/>
 					<p class="description">
-						<?php _e('Specify which port to use for SMTP mailing. Kingmailer only allows for standard SMTP ports (25, 465, and 587). Defaults to "587"', 'kingmailer'); ?>
+						<?php _e('Specify which port to use for SMTP mailing. Kingmailer only allows for standard SMTP ports (25, 465, and 587). Defaults to "587"', 'kingmailer-smtp'); ?>
 						<br />
-						<?php _e('Only valid for use with SMTP.', 'kingmailer'); ?>
+						<?php _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
 			</tr>
 		</table>
 		<p>
 			<?php
-				_e('Please click <code>Save Changes</code> before attempting to test the configuration.', 'kingmailer');
+				_e('Please click <code>Save Changes</code> before attempting to test the configuration.', 'kingmailer-smtp');
 			?>
 		</p>
 		<p class="submit">
 			<input type="submit"
 				   class="button-primary"
-				   value="<?php _e('Save Changes', 'kingmailer'); ?>"
+				   value="<?php _e('Save Changes', 'kingmailer-smtp'); ?>"
 			/>
 			<input type="button"
 				   id="kingmailer-test"
 				   class="button-secondary"
-				   value="<?php _e('Send Test Mail', 'kingmailer'); ?>"
+				   value="<?php _e('Send Test Mail', 'kingmailer-smtp'); ?>"
 			/>
 		</p>
 	</form>

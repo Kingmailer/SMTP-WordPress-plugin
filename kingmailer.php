@@ -4,13 +4,13 @@
 	 * Plugin Name:  Kingmailer SMTP
 	 * Plugin URI:   https://wordpress.org/plugins/kingmailer-smtp/
 	 * Description:  The #1 Mailgun alternative build for sending transactional emails. $5 p/mo. Try for free. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface.
-	 * Version:      0.3.0
+	 * Version:      0.3.03
 	 * Requires at least: 3.3
 	 * Author:       Kingmailer
 	 * Author URI:   https://kingmailer.co
 	 * License:      GPLv2 or later
-	 * Text Domain:  wordpress-smtp
-	 * Domain Path:  /languages/.
+	 * Text Domain:  kingmailer-smtp
+	 * Domain Path:  /languages/
 	 */
 
 	/*
@@ -222,7 +222,7 @@
 		 */
 		public function deactivate_and_die($file)
 		{
-			load_plugin_textdomain('kingmailer', false, 'kingmailer/languages');
+			load_plugin_textdomain('kingmailer-smtp', false, 'kingmailer/languages');
 			$message = sprintf(__('Kingmailer has been automatically deactivated because the file <strong>%s</strong> is missing. Please reinstall the plugin and reactivate.'),
 				$file);
 			if (!function_exists('deactivate_plugins')):
@@ -309,5 +309,25 @@ if (is_admin()){
 	} else {
 		Kingmailer::deactivate_and_die(dirname(__FILE__) . '/includes/admin.php');
 	}
+}
+
+
+/**
+ * 
+ * Temporary function to for error checking
+ */
+function km_error_log($string, $source = "Unknown source")
+{
+	$object_output = "";
+
+	if(is_object($string) || is_array($string)) {
+		foreach($string as $key => $value) {
+			$object_output .= "[" . $key . "] => " . $value . " | ";
+		}
+		error_log( "\n" . $source . ": " . $object_output , 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
+	} else {
+		error_log( "\n" . $source . ": " . $string, 3, "/var/www/html/wp-content/plugins/kingmailer-smtp/php_errors.log");
+	}
+
 }
 
