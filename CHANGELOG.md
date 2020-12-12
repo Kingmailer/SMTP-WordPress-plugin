@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.3.07 (2020-12-12):
+* Remove SMTP
+
 0.3.06 (2020-12-12):
 * Bug fix (slug change)
 

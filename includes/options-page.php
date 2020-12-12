@@ -126,7 +126,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top">
+			<!-- <tr valign="top">
 				<th scope="row">
 					<?php _e('Use HTTP API', 'kingmailer-smtp'); ?>
 				</th>
@@ -141,7 +141,7 @@
 						?>
 					</p>
 				</td>
-			</tr>
+			</tr> -->
 			<tr valign="top" class="kingmailer-api">
 				<th scope="row">
 					<?php _e('API-host', 'kingmailer-smtp'); ?>
@@ -190,7 +190,7 @@
 					</p>
 				</td>
 			</tr>
-			<tr valign="top" class="kingmailer-smtp">
+			<!-- <tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php _e('Username', 'kingmailer-smtp'); ?>
 				</th>
@@ -240,7 +240,7 @@
 						<?php _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
 					</p>
 				</td>
-			</tr>
+			</tr> -->
 			<!-- <tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php // _e('Use Secure SMTP', 'kingmailer-smtp'); ?>
