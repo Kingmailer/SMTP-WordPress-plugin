@@ -83,7 +83,7 @@
 			// Use the default values if no user values are set
 			if (!$this->options){
 				$this->options = $this->defaults;
-				add_option('kingmailer', $this->options);
+				add_option('kingmailer-smtp', $this->options);
 			}
 		}
 
@@ -98,8 +98,8 @@
 		{
 			if (current_user_can('manage_options')):
 
-				$this->hook_suffix = add_options_page(__('Kingmailer', 'kingmailer'), __('Kingmailer', 'kingmailer'),
-					'manage_options', 'kingmailer', array(&$this, 'options_page'));
+				$this->hook_suffix = add_options_page(__('Kingmailer', 'kingmailer-smtp'), __('Kingmailer', 'kingmailer-smtp'),
+					'manage_options', 'kingmailer-smtp', array(&$this, 'options_page'));
 				add_action("admin_print_scripts-{$this->hook_suffix}", array(&$this, 'admin_js'));
 				add_filter("plugin_action_links_{$this->plugin_basename}", array(&$this, 'filter_plugin_actions'));
 			endif;
@@ -147,7 +147,7 @@
 		 */
 		public function filter_plugin_actions($links)
 		{
-			$settings_link = '<a href="' . menu_page_url('kingmailer', false) . '">' . __('Settings', 'kingmailer-smtp') . '</a>';
+			$settings_link = '<a href="' . menu_page_url('kingmailer-smtp', false) . '">' . __('Settings', 'kingmailer-smtp') . '</a>';
 			array_unshift($links, $settings_link);
 
 			return $links;
@@ -196,7 +196,7 @@
 		 */
 		public function register_settings()
 		{
-			register_setting('kingmailer', 'kingmailer', array(&$this, 'validation'));
+			register_setting('kingmailer-smtp', 'kingmailer-smtp', array(&$this, 'validation'));
 		}
 
 		/**
@@ -258,7 +258,7 @@
 				printf(
 					__('Kingmailer is not properly configured! You can configure your Kingmailer settings in your wp-config.php file or <a href="%1$s">here</a>',
 						'kingmailer-smtp'),
-					menu_page_url('kingmailer', false)
+					menu_page_url('kingmailer-smtp', false)
 				);
 				echo ('</p></div>');
 			endif;

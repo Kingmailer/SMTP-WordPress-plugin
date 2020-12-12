@@ -54,7 +54,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[domain]"
+						   name="kingmailer-smtp[domain]"
 						   value="<?php esc_attr_e($this->get_option('domain')); ?>"
 						   placeholder="example.com"
 					/>
@@ -81,7 +81,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[from-name]"
+						   name="kingmailer-smtp[from-name]"
 						   value="<?php esc_attr_e($this->get_option('from-name')); ?>"
 						   placeholder="Excited User"
 					/>
@@ -99,7 +99,7 @@
 				<td>
 					<input type="text"
 						   class="regular-text"
-						   name="kingmailer[from-address]"
+						   name="kingmailer-smtp[from-address]"
 						   value="<?php esc_attr_e($this->get_option('from-address')); ?>"
 						   placeholder="info@example.com"
 					/>
@@ -115,7 +115,7 @@
 					<?php _e('Override "From" Details', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
-					<select name="kingmailer[override-from]">
+					<select name="kingmailer-smtp[override-from]">
 						<option value="1"<?php selected('1', $this->get_option('override-from', null, '1')); ?>><?php _e('Yes', 'kingmailer-smtp'); ?></option>
 						<option value="0"<?php selected('0', $this->get_option('override-from', null, '0')); ?>><?php _e('No', 'kingmailer-smtp'); ?></option>
 					</select>
@@ -131,7 +131,7 @@
 					<?php _e('Use HTTP API', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
-					<select id="kingmailer-api" name="kingmailer[use_api]">
+					<select id="kingmailer-api" name="kingmailer-smtp[use_api]">
 						<option value="1"<?php selected('1', $this->get_option('use_api')); ?>><?php _e('Yes', 'kingmailer-smtp'); ?></option>
 						<option value="0"<?php selected('0', $this->get_option('use_api')); ?>><?php _e('No', 'kingmailer-smtp'); ?></option>
 					</select>
@@ -148,7 +148,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[api_host]"
+						   name="kingmailer-smtp[api_host]"
 						   value="<?php esc_attr_e($this->get_option('api_host')); ?>"
 						   placeholder="kingmailer.org"
 						   readonly
@@ -163,7 +163,7 @@
 					<?php _e('API Key', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
-					<input type="text" class="regular-text" name="kingmailer[api_key]"
+					<input type="text" class="regular-text" name="kingmailer-smtp[api_key]"
 						   value="<?php esc_attr_e($this->get_option('api_key')); ?>"
 						   placeholder="ur7keAGRjYB3W5NfKQEm563Z"
 					/>
@@ -178,7 +178,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[host]"
+						   name="kingmailer-smtp[host]"
 						   value="<?php esc_attr_e($this->get_option('host')); ?>"
 						   placeholder="kingmailer.org"
 						   readonly
@@ -196,7 +196,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[username]"
+						   name="kingmailer-smtp[username]"
 						   value="<?php esc_attr_e($this->get_option('username')); ?>"
 						   placeholder="postmaster"
 					/>
@@ -213,7 +213,7 @@
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[password]"
+						   name="kingmailer-smtp[password]"
 						   value="<?php esc_attr_e($this->get_option('password')); ?>"
 						   placeholder="my-password"
 					/>
@@ -224,29 +224,13 @@
 					</p>
 				</td>
 			</tr>
-			<!-- <tr valign="top" class="kingmailer-smtp">
-				<th scope="row">
-					<?php // _e('Use Secure SMTP', 'kingmailer-smtp'); ?>
-				</th>
-				<td>
-					<select name="kingmailer[secure]">
-						<option value="1"<?php // selected('1', $this->get_option('secure')); ?>><?php // _e('Yes', 'kingmailer-smtp'); ?></option>
-						<option value="0"<?php // selected('0', $this->get_option('secure')); ?>><?php // _e('No', 'kingmailer-smtp'); ?></option>
-					</select>
-					<p class="description">
-						<?php // _e('Set this to "Yes" to send your mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer-smtp'); ?>
-						<br />
-						<?php // _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
-					</p>
-				</td>
-			</tr> -->
 			<tr valign="top" class="kingmailer-smtp">
 				<th scope="row">
 					<?php _e('Port number', 'kingmailer-smtp'); ?>
 				</th>
 				<td>
 					<input type="text" class="regular-text"
-						   name="kingmailer[smtp_port]"
+						   name="kingmailer-smtp[smtp_port]"
 						   value="<?php esc_attr_e($this->get_option('smtp_port')); ?>"
 						   placeholder="587"
 					/>
@@ -257,6 +241,22 @@
 					</p>
 				</td>
 			</tr>
+			<!-- <tr valign="top" class="kingmailer-smtp">
+				<th scope="row">
+					<?php // _e('Use Secure SMTP', 'kingmailer-smtp'); ?>
+				</th>
+				<td>
+					<select name="kingmailer-smtp[secure]">
+						<option value="1"<?php // selected('1', $this->get_option('secure')); ?>><?php // _e('Yes', 'kingmailer-smtp'); ?></option>
+						<option value="0"<?php // selected('0', $this->get_option('secure')); ?>><?php // _e('No', 'kingmailer-smtp'); ?></option>
+					</select>
+					<p class="description">
+						<?php // _e('Set this to "Yes" to send your mails over a secure SSL/TLS connection. If you set this to "No" your password will be sent in plain text. Default is "Yes".', 'kingmailer-smtp'); ?>
+						<br />
+						<?php // _e('Only valid for use with SMTP.', 'kingmailer-smtp'); ?>
+					</p>
+				</td>
+			</tr> -->
 		</table>
 		<p>
 			<?php

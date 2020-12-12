@@ -68,7 +68,7 @@ class MailCatcherV6 extends \PHPMailer\PHPMailer\PHPMailer implements MailCatche
 	public function send() { // phpcs:ignore
 	
 		// Get the plugin options. These specify the mailer type
-		$options = get_option('kingmailer');
+		$options = get_option('kingmailer-smtp');
 
 		// TODO: test if adding an XMailer will improve the chances of something not being labelled spam
 		// Define a custom header, that will be used to identify the plugin and the mailer.

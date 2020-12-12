@@ -2,7 +2,7 @@
 // Show or hide SMTP/API options
 var kingmailerApiOrNot = function () {
 
-    if (jQuery('#kingmailer-api').val() == 1) {
+    if (jQuery('#kingmailer-api').val() != 0) {
         jQuery('.kingmailer-smtp').hide()
         jQuery('.kingmailer-api').show()
     } else {

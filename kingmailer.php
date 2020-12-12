@@ -4,13 +4,13 @@
 	 * Plugin Name:  Kingmailer SMTP
 	 * Plugin URI:   https://wordpress.org/plugins/kingmailer-smtp/
 	 * Description:  The #1 Mailgun alternative build for sending transactional emails. $5 p/mo. Try for free. SMTP server works perfect with WooCommerce, bbPress, GravityForms etc. Easy install, simple interface.
-	 * Version:      0.3.04
+	 * Version:      0.3.05
 	 * Requires at least: 3.3
 	 * Author:       Kingmailer
 	 * Author URI:   https://kingmailer.co
 	 * License:      GPLv2 or later
 	 * Text Domain:  kingmailer-smtp
-	 * Domain Path:  /languages
+	 * Domain Path:  /languages/
 	 */
 
 	/*
@@ -53,7 +53,7 @@
 		 */
 		public function __construct()
 		{
-			$this->options = get_option('kingmailer');
+			$this->options = get_option('kingmailer-smtp');
 			$this->plugin_file = __FILE__;
 			$this->plugin_basename = plugin_basename($this->plugin_file);
 
@@ -179,7 +179,7 @@
 		 */
 		public function phpmailer_init($phpmailer)
 		{
-			$options = get_option('kingmailer');
+			$options = get_option('kingmailer-smtp');
 
 			$from = $options['from-address'];
 			$fromName = $options['from-name'];
@@ -246,7 +246,7 @@
 		public function api_call($uri, $params = array(), $method = 'POST')
 		{
 
-			$options = get_option('kingmailer');
+			$options = get_option('kingmailer-smtp');
 			$api_key = (defined('KINGMAILER_APIKEY') && KINGMAILER_APIKEY) ? KINGMAILER_APIKEY : $options[ 'api_key' ];
 			$domain = (defined('KINGMAILER_DOMAIN') && KINGMAILER_DOMAIN) ? KINGMAILER_DOMAIN : $options[ 'domain' ];
 

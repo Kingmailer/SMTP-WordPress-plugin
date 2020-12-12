@@ -4,8 +4,8 @@ Kingmailer WordPress SMTP
 Contributors: kingmailer, chandersbs, krishnamoniz
 Tags: wordpress smtp, mailgun smtp, sendgrid smtp, gmail smtp, smtp, kingmailer
 Requires at least: 3.3
-Tested up to: 5.5.1
-Stable tag: 0.3.04
+Tested up to: 5.5.3
+Stable tag: 0.3.05
 License: GPLv2 or later
 
 Improve your WordPress SMTP: send emails to users' inbox using Kingmailer WordPress SMTP plugin.

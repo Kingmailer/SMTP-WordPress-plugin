@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.3.05 (2020-12-12):
+* Bug fix (slug change)
+
 0.3.04 (2020-12-05):
 * Updated text domain
 

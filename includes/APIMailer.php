@@ -93,7 +93,7 @@ class APIMailer {
 	public function __construct( $phpmailer ) {
 
 		// TODO Get the url and api key from the options
-		$this->options = get_option('kingmailer',  
+		$this->options = get_option('kingmailer-smtp',  
 			array(
 				"api_key" => "",
 				"api_host" => ""
