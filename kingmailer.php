@@ -10,7 +10,7 @@
 	 * Author URI:   https://kingmailer.co
 	 * License:      GPLv2 or later
 	 * Text Domain:  kingmailer-smtp
-	 * Domain Path:  /languages/
+	 * Domain Path:  /languages
 	 */
 
 	/*
