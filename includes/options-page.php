@@ -126,6 +126,8 @@
 					</p>
 				</td>
 			</tr>
+			<!-- IMPORTANT remove this hidden field when reactivating SMTP -->
+			<input type="hidden" id="kingmailer-api" name="kingmailer-smtp[use_api]" value="1">
 			<!-- <tr valign="top">
 				<th scope="row">
 					<?php _e('Use HTTP API', 'kingmailer-smtp'); ?>
