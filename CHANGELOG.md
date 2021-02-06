@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.3.08 (2021-02-06)
+* Attachment fix
+
 0.3.07 (2020-12-12):
 * Remove SMTP
 
